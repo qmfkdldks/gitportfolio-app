@@ -1,7 +1,7 @@
 import { createLazyFileRoute } from "@tanstack/react-router";
 import "../App.css";
 import { useCallback, useEffect } from "react";
-import { fetchFileTrees, fetchRandomCodeFiles } from "../services/github";
+import { fetchFileTrees } from "../services/github";
 import { fetchDevType } from "../services/gitportfolio";
 import store from "../store";
 

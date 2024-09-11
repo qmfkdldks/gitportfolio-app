@@ -1,6 +1,12 @@
 import { Store } from "@tanstack/store";
 
-const store = new Store({
+interface IStore {
+  github_username: string,
+  trees: string[],
+  files: string[],
+}
+
+const store = new Store<IStore>({
   github_username: "",
   trees: [],
   files: [],
