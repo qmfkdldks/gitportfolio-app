@@ -1,8 +1,8 @@
 import { createLazyFileRoute } from "@tanstack/react-router";
-import "../App.css";
-import { useCallback, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { fetchFileTrees } from "../services/github";
 import { fetchDevType } from "../services/gitportfolio";
+import { Rings } from "react-loader-spinner";
 import store from "../store";
 
 export const Route = createLazyFileRoute("/github/$owner")({
@@ -11,24 +11,27 @@ export const Route = createLazyFileRoute("/github/$owner")({
 
 function Index() {
   const { owner } = Route.useParams();
+  const [isLoading, setIsLoading] = useState(false);
+  const [developer_type, setDeveloperType] = useState("");
 
   useEffect(() => {
     async function getDeveloperType() {
+      setIsLoading(true);
       // fetchRandomCodeFiles("qmfkdldks", "moracano");
       const file_tree = await fetchFileTrees(owner);
       const data = await fetchDevType(file_tree);
-      console.log("type", data);
+      setDeveloperType(data.developer_type);
+      setIsLoading(false);
     }
 
     getDeveloperType();
   }, []);
 
-  const onClick = useCallback(() => {}, [store]);
-
   return (
     <div className="p-2">
-      <h3>Welcome Home!</h3>
-      <button onClick={onClick}>Click</button>
+      <h3>Welcome {owner}!</h3>
+      {isLoading && <Rings color="#90e0ef" />}
+      {developer_type}
     </div>
   );
 }
