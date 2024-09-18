@@ -9,9 +9,6 @@ export const Route = createRootRoute({
         <li>
           <Link to="/">Home</Link>
         </li>
-        <li>
-          <Link to="/github/qmfkdldks">Get Developer Type</Link>
-        </li>
       </ul>
       <hr />
       <Outlet />

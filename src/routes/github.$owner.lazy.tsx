@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { fetchFileTrees } from "../services/github";
 import { fetchDevType } from "../services/gitportfolio";
 import { Rings } from "react-loader-spinner";
-import store from "../store";
 
 export const Route = createLazyFileRoute("/github/$owner")({
   component: Index,
