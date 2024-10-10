@@ -1,4 +1,13 @@
-const developer_types = {
+interface IDeveloperDict {
+    [key: string]: {
+       ko: {
+         title: string;
+         description: string;
+       };
+     };
+}
+
+const developer_types: IDeveloperDict = {
   "1": {
     ko: {
       title: "UI UX 아티스트 형",
