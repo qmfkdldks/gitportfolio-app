@@ -1,0 +1,1 @@
+{"root":["./src/main.tsx","./src/routetree.gen.ts","./src/store.ts","./src/vite-env.d.ts","./src/components/recentfiles.tsx","./src/lib/extensions.ts","./src/lib/types.ts","./src/routes/__root.tsx","./src/routes/github.$owner.lazy.tsx","./src/routes/index.tsx","./src/services/github.ts","./src/services/gitportfolio.ts"],"version":"5.6.3"}

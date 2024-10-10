@@ -1,10 +1,10 @@
 interface IDeveloperDict {
-    [key: string]: {
-       ko: {
-         title: string;
-         description: string;
-       };
-     };
+  [key: string]: {
+    ko: {
+      title: string;
+      description: string;
+    };
+  };
 }
 
 const developer_types: IDeveloperDict = {
@@ -44,11 +44,13 @@ const developer_types: IDeveloperDict = {
     },
   },
   "5": {
-    title: "문서화의 달인형",
-    description: `특징: README.md 파일이 항상 잘 
-정리됨, 위키 페이지 활발한 업데이트
-
-설명: 코드만큼 문서화를 중요하게 여기는 개발자, 동료들의 영원한 은인`,
+    ko: {
+      title: "문서화의 달인형",
+      description: `특징: README.md 파일이 항상 잘 
+    정리됨, 위키 페이지 활발한 업데이트
+    
+    설명: 코드만큼 문서화를 중요하게 여기는 개발자, 동료들의 영원한 은인`,
+    },
   },
 };
 
