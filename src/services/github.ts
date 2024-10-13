@@ -1,5 +1,4 @@
 import { Octokit } from "octokit";
-// import { all_extensions } from "../lib/extensions";
 import store from "../store";
 
 const client = new Octokit({ auth: "" });

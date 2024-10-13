@@ -1,6 +1,8 @@
+const VITE_GITPORTFOLIO_API_URL = import.meta.env.VITE_GITPORTFOLIO_API_URL || "http://localhost:4567"
+
 export async function fetchDevType(file_tree: string[]) {
   const response = await fetch(
-    "https://gitportfolio-api.onrender.com/api/v1/type",
+    `${VITE_GITPORTFOLIO_API_URL}/api/v1/type`,
     {
       method: "POST",
       headers: {

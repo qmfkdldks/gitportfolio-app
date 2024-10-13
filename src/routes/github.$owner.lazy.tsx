@@ -1,5 +1,5 @@
 import { createLazyFileRoute } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { fetchFileTrees } from "../services/github";
 import { fetchDevType } from "../services/gitportfolio";
 import card_src from "../assets/card_template.png";
@@ -8,6 +8,7 @@ import loading_image from "../assets/loading.png";
 import particle_3 from "../assets/particle_3.png";
 import download from "../assets/download.png";
 import profile from "../assets/profile.png";
+import { toJpeg } from 'html-to-image';
 
 export const Route = createLazyFileRoute("/github/$owner")({
   component: Index,
@@ -18,6 +19,24 @@ function Index() {
   const [isLoading, setIsLoading] = useState(false);
   const [developer_type, setDeveloperType] = useState("");
   const [developer_description, setDeveloperDescription] = useState("");
+  const ref = useRef<HTMLDivElement>(null)
+
+  const onDownloadClick = useCallback(() => {
+    if (ref.current === null) {
+      return
+    }
+
+    toJpeg(ref.current, { cacheBust: true, })
+      .then((dataUrl) => {
+        const link = document.createElement('a')
+        link.download = 'gitportfolio.jpeg'
+        link.href = dataUrl
+        link.click()
+      })
+      .catch((err) => {
+        console.error(err)
+      })
+  }, [ref])
 
   useEffect(() => {
     async function getDeveloperType() {
@@ -51,7 +70,7 @@ function Index() {
   }
 
   return (
-    <div className="container">
+    <div className="container" ref={ref}>
       <img src={particle_3} className="particle_3" />
 
       <div className="result">
@@ -64,7 +83,8 @@ function Index() {
         </div>
       </div>
 
-      <button>
+      <p>https://gitportfolio-app.vercel.app</p>
+      <button onClick={onDownloadClick}>
         <img src={download} />
         <p>내 핸드폰에 저장하기</p>
       </button>
