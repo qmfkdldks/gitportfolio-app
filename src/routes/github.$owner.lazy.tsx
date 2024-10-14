@@ -2,13 +2,27 @@ import { createLazyFileRoute } from "@tanstack/react-router";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { fetchFileTrees } from "../services/github";
 import { fetchDevType } from "../services/gitportfolio";
+import { toJpeg } from 'html-to-image';
+
 import card_src from "../assets/card_template.png";
 import developer_types from "../lib/types";
 import loading_image from "../assets/loading.png";
 import particle_3 from "../assets/particle_3.png";
 import download from "../assets/download.png";
-import profile from "../assets/profile.png";
-import { toJpeg } from 'html-to-image';
+
+import uiux from "../assets/uiux.jpeg";
+import tester from "../assets/tester.jpg";
+import master from "../assets/master.jpg";
+import build from "../assets/build.jpeg";
+import documentation from "../assets/documentation.jpeg";
+
+const PROFILE_IMAGES = {
+  "1": uiux,
+  "2": master,
+  "3": tester,
+  "4": build,
+  "5": documentation
+}
 
 export const Route = createLazyFileRoute("/github/$owner")({
   component: Index,
@@ -19,6 +33,7 @@ function Index() {
   const [isLoading, setIsLoading] = useState(false);
   const [developer_type, setDeveloperType] = useState("");
   const [developer_description, setDeveloperDescription] = useState("");
+  const [profile, setProfile] = useState("");
   const ref = useRef<HTMLDivElement>(null)
 
   const onDownloadClick = useCallback(() => {
@@ -49,6 +64,7 @@ function Index() {
 
       const title = developer_types[enum_value]["ko"]["title"];
       const description = developer_types[enum_value]["ko"]["description"];
+      setProfile(PROFILE_IMAGES[enum_value as keyof typeof PROFILE_IMAGES]);
 
       setDeveloperType(title);
       setDeveloperDescription(description);
